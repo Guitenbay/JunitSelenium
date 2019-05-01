@@ -27,21 +27,21 @@ loginUsernameInputbox=//*[@id='username']
 
 **1. Test Case ID**
     
-   Unique identifier of a test case
+    Unique identifier of a test case
   
 **2. Description**
 
 **3. Runmode**
 
-   have two variable
+    have two variable
     
-   `Yes` : the test case will be running
+    `Yes` : the test case will be running
     
-   `No`  : the test case won't be running
+    `No`  : the test case won't be running
   
 **4. Results**
 
-   the results of the test cases after running the script
+    the results of the test cases after running the script
 
 
 ### write the test steps in the TestSteps sheet of `data.xlsx`
@@ -50,26 +50,26 @@ loginUsernameInputbox=//*[@id='username']
 
 **1. Test Case ID**
    
-   Unique identifier of a test case. 
+    Unique identifier of a test case. 
     
 **2. TestScenario ID**
    
-   No use in this script
+    No use in this script
     
 **3. Description**
 
 **4. Variable**
    
-   one of the UI controlling method's arguments, can be considered the input value of `input`
+    one of the UI controlling method's arguments, can be considered the input value of `input`
     
 **5. Page Object**
    
-   one of the UI controlling method's arguments, which must be existed in `OR.txt`
+    one of the UI controlling method's arguments, which must be existed in `OR.txt`
     
 **6. Action_Keyword**
    
-   the UI controlling method
+    the UI controlling method
     
 **7. Results**
 
-   the results of the test cases after running the script
+    the results of the test cases after running the script
