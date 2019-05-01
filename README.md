@@ -73,3 +73,7 @@ loginUsernameInputbox=//*[@id='username']
 **7. Results**
 
     the results of the test cases after running the script
+    
+### Logger
+
+    You can see the detail of the results after running this script in logfile.log
