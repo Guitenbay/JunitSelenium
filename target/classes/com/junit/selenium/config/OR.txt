@@ -1,6 +1,0 @@
-#login page
-loginUsernameInputbox=//*[@id='username']
-loginPasswordInptbox =//*[@id='password']
-loginAuthbtn=//*[@id='auth-button']
-loginProjectlist=//*[@id="project-list"]
-loginLoginbtn=//*[@id='login-button']

@@ -14,7 +14,7 @@ A simple java selenium testing script, using chrome webDriver
 
 ## Usage
 
-### write the UI elements' xpath in `OR.txt`
+### Write the UI elements' xpath in `OR.txt`
 
 > schema: `PageObject = xpath`
 
@@ -23,7 +23,7 @@ e.g:
 loginUsernameInputbox=//*[@id='username']
 ```
 
-### write the test cases in the TestCases sheet of `data.xlsx`
+### Write the test cases in the TestCases sheet of `data.xlsx`
 
 **1. Test Case ID**
     
@@ -33,7 +33,7 @@ loginUsernameInputbox=//*[@id='username']
 
 **3. Runmode**
 
-    have two variable
+    Have two variable
     
     `Yes` : the test case will be running
     
@@ -41,10 +41,10 @@ loginUsernameInputbox=//*[@id='username']
   
 **4. Results**
 
-    the results of the test cases after running the script
+    The results of the test cases after running the script
 
 
-### write the test steps in the TestSteps sheet of `data.xlsx`
+### Write the test steps in the TestSteps sheet of `data.xlsx`
 
 > In the same test case, test steps must have similar Test Case ID and be *sort* by order
 
@@ -60,19 +60,19 @@ loginUsernameInputbox=//*[@id='username']
 
 **4. Variable**
    
-    one of the UI controlling method's arguments, can be considered the input value of `input`
+    One of the UI controlling method's arguments, can be considered the input value of `input`
     
 **5. Page Object**
    
-    one of the UI controlling method's arguments, which must be existed in `OR.txt`
+    One of the UI controlling method's arguments, which must be existed in `OR.txt`
     
 **6. Action_Keyword**
    
-    the UI controlling method
+    The UI controlling method
     
 **7. Results**
 
-    the results of the test cases after running the script
+    The results of the test cases after running the script
     
 ### Logger
 
