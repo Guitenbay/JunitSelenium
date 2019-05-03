@@ -79,9 +79,11 @@ public class DriverScript {
 
                     sActionKeyword = ExcelUtils.getCellData(iTestStep, Constants.Col_ActionKeyword,Constants.Sheet_TestSteps);
                     //从Excel中读取的页面元素名称
+
                     String sPageObject = ExcelUtils.getCellData(iTestStep, Constants.Col_PageObject, Constants.Sheet_TestSteps);
                     //从Excel中读取输入的值
                     String sVariable = ExcelUtils.getCellData(iTestStep, Constants.Col_Variable, Constants.Sheet_TestSteps);
+
                     if (!sVariable.equals("")) {
                         sArgs = new String[2];
                         sArgs[1] = sVariable;

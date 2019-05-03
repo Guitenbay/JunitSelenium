@@ -3,7 +3,7 @@ package com.junit.selenium.config;
 public class Constants {
 
     // 这里定义为public static的类型，方便其他任何类进行访问和调用
-    public static final String URL = "http://gc21131138.imwork.net:20430/test-maker/web/client/index.action";
+//    public static final String URL = "http://gc21131138.imwork.net:20430/test-maker/web/client/index.action";
 
     public static final String Path_TestData = ".\\src\\main\\java\\com\\junit\\selenium\\data\\data.xlsx";
     public static final String File_TestData = "data.xlsx";

@@ -28,13 +28,13 @@ public class ActionKeywords {
 
     public static void openUrl(String object) {
         try {
-            Log.info("打开测试环境地址：" + Constants.URL);
+            Log.info("打开测试环境地址：" + object);
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-            driver.get(Constants.URL);
+            driver.get(object);
 
         }catch(Exception e){
-            Log.info("无法打开测试环境地址---"+e.getMessage());
+            Log.info("无法打开测试环境地址："+e.getMessage());
             DriverScript.bResult = false;
         }
     }
