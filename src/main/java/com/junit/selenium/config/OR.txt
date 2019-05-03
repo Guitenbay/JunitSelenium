@@ -4,3 +4,7 @@ loginPasswordInptbox =//*[@id='password']
 loginAuthbtn=//*[@id='auth-button']
 loginProjectlist=//*[@id="project-list"]
 loginLoginbtn=//*[@id='login-button']
+
+availableUser=//table[@id='user-data-table']/tbody/tr[4]/td/input
+availableSwitchStateButton=//a[@id='switch-state-btn']
+availableConfirmButton=//div[3]/div/div/button[2]
