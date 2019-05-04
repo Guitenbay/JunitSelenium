@@ -39,7 +39,7 @@ public class Engine {
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    void stop(){
+    public void stop(){
         driver.quit();
         service.stop();
     }
