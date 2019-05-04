@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
+import java.util.UUID;
+
 public class UserManagement {
     private Engine engine = Engine.getInstance();
     private WebDriver driver = engine.getDriver();
@@ -33,7 +35,7 @@ public class UserManagement {
         driver.findElement(By.id("switch-state-btn")).click();
         driver.findElement(By.xpath("//div[3]/div/div/button[2]")).click();
         Thread.sleep(1000);
-        Assert.assertEquals(driver.findElement(By.xpath("//div[4]/div/div/div[2]/div/div")).getText(), "操作成功！");
+        Assert.assertEquals("操作成功！", driver.findElement(By.xpath("//div[4]/div/div/div[2]/div/div")).getText());
     }
 
     @Test
@@ -49,7 +51,7 @@ public class UserManagement {
         driver.findElement(By.id("switch-admin-btn")).click();
         driver.findElement(By.xpath("//div[3]/div/div/button[2]")).click();
         Thread.sleep(1000);
-        Assert.assertEquals(driver.findElement(By.xpath("//div[4]/div/div/div[2]/div/div")).getText(), "操作成功！");
+        Assert.assertEquals("操作成功！", driver.findElement(By.xpath("//div[4]/div/div/div[2]/div/div")).getText());
     }
 
     @Test
@@ -65,7 +67,7 @@ public class UserManagement {
         driver.findElement(By.id("reset-password-btn")).click();
         driver.findElement(By.xpath("//div[3]/div/div/button[2]")).click();
         Thread.sleep(1000);
-        Assert.assertEquals(driver.findElement(By.xpath("//div[4]/div/div/div[2]/div/div")).getText().substring(0, 6), "新密码已生成");
+        Assert.assertEquals("新密码已生成", driver.findElement(By.xpath("//div[4]/div/div/div[2]/div/div")).getText().substring(0, 6));
     }
 
     @Test
@@ -80,7 +82,7 @@ public class UserManagement {
         driver.findElement(By.id("user-password")).sendKeys("123456");
         driver.findElement(By.id("user-password-confirm")).sendKeys("123");
         driver.findElement(By.id("submit-form-btn")).click();
-        Assert.assertEquals(driver.findElement(By.id("user-password-confirm-error")).getText(), "你的输入不相同");
+        Assert.assertEquals("你的输入不相同", driver.findElement(By.id("user-password-confirm-error")).getText());
     }
 
     @Test
@@ -95,6 +97,54 @@ public class UserManagement {
         driver.findElement(By.id("user-password")).sendKeys("123");
         driver.findElement(By.id("user-password-confirm")).sendKeys("123");
         driver.findElement(By.id("submit-form-btn")).click();
-        Assert.assertEquals(driver.findElement(By.id("user-password-error")).getText(), "最少 4 个字");
+        Assert.assertEquals("最少 4 个字", driver.findElement(By.id("user-password-error")).getText());
+    }
+
+    @Test
+    public void addUserWithFewLetterUsername() {
+        engine.implicitlyWait();
+        driver.findElement(By.linkText("用户管理")).click();
+        driver.findElement(By.cssSelector(".glyphicon-plus-sign")).click();
+        driver.findElement(By.id("user-username")).sendKeys("abc");
+        driver.findElement(By.id("user-fullName")).sendKeys("ABCD");
+        driver.findElement(By.id("user-phone")).sendKeys("123456");
+        driver.findElement(By.id("user-email")).sendKeys("abc@xyz.com");
+        driver.findElement(By.id("user-password")).sendKeys("123456");
+        driver.findElement(By.id("user-password-confirm")).sendKeys("123456");
+        driver.findElement(By.id("submit-form-btn")).click();
+        Assert.assertEquals("最少 4 个字", driver.findElement(By.id("user-username-error")).getText());
+    }
+
+    @Test
+    public void addUserWithInvalidEmail() {
+        engine.implicitlyWait();
+        driver.findElement(By.linkText("用户管理")).click();
+        driver.findElement(By.cssSelector(".glyphicon-plus-sign")).click();
+        driver.findElement(By.id("user-username")).sendKeys("abcd");
+        driver.findElement(By.id("user-fullName")).sendKeys("ABCD");
+        driver.findElement(By.id("user-phone")).sendKeys("123456");
+        driver.findElement(By.id("user-email")).sendKeys("abc@");
+        driver.findElement(By.id("user-password")).sendKeys("123456");
+        driver.findElement(By.id("user-password-confirm")).sendKeys("123456");
+        driver.findElement(By.id("submit-form-btn")).click();
+        Assert.assertEquals("请输入有效的电子邮件", driver.findElement(By.id("user-email-error")).getText());
+    }
+
+    @Test
+    public void addUser() throws InterruptedException {
+        String username = UUID.randomUUID().toString().substring(0, 8);
+
+        engine.implicitlyWait();
+        driver.findElement(By.linkText("用户管理")).click();
+        driver.findElement(By.cssSelector(".glyphicon-plus-sign")).click();
+        driver.findElement(By.id("user-username")).sendKeys(username);
+        driver.findElement(By.id("user-fullName")).sendKeys(username);
+        driver.findElement(By.id("user-phone")).sendKeys("123456");
+        driver.findElement(By.id("user-email")).sendKeys("abc@xyz.com");
+        driver.findElement(By.id("user-password")).sendKeys("123456");
+        driver.findElement(By.id("user-password-confirm")).sendKeys("123456");
+        driver.findElement(By.id("submit-form-btn")).click();
+        Thread.sleep(1000);
+        Assert.assertEquals("操作成功！", driver.findElement(By.xpath("//div[4]/div/div/div[2]/div/div")).getText());
     }
 }
