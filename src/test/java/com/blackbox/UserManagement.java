@@ -19,8 +19,8 @@ public class UserManagement {
 
     @Before
     public void Login() {
+        WebDriver driver = Engine.getInstance().getDriver();
         driver.get("http://gc21131138.imwork.net:20430/test-maker/web/admin/index.action");
-        driver.manage().window().setSize(new Dimension(1280, 800));
         driver.findElement(By.id("username")).sendKeys("testadmin1");
         driver.findElement(By.id("password")).sendKeys("123456");
         driver.findElement(By.id("login-button")).click();

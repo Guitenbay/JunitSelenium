@@ -1,0 +1,21 @@
+http://gc21131138.imwork.net:47832/qcbin
+RuanJiawei
+
+
+出题系统后台管理页面
+http://gc21131138.imwork.net:20430/test-maker/web/admin/index.action
+
+出题页面
+http://gc21131138.imwork.net:20430/test-maker/web/client/index.action
+
+
+黑盒测试：https://github.com/Guitenbay/JunitSelenium/tree/software
+
+
+白盒测试：
+https://github.com/Guitenbay/GeneratingExamSystem
+
+
+管理员账户
+user： testadmin1
+pw:123456
