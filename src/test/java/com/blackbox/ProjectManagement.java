@@ -68,6 +68,7 @@ public class ProjectManagement {
         Thread.sleep(1000);
         Assert.assertEquals("导出成功", driver.findElement(By.cssSelector(".bootstrap-dialog-message")).getText().substring(0, 4));
     }
+
     @Test
     public void resetEdit() {
         engine.refresh();
@@ -76,5 +77,17 @@ public class ProjectManagement {
         projectName.sendKeys("test_project");
         driver.findElement(By.cssSelector(".col-md-2 > .btn-default")).click();
         Assert.assertTrue(projectName.getText().isEmpty());
+    }
+
+    @Test
+    public void inspectProject() throws InterruptedException {
+        engine.refresh();
+        String expectedProjectName = driver.findElement(By.xpath("//tbody[@id='project-table-body']/tr/td[2]")).getText();
+
+        driver.findElement(By.cssSelector(".item-row:nth-child(1) .view-item > .glyphicon")).click();
+        Thread.sleep(1000);
+        String projectName = driver.findElement(By.cssSelector(".in #myModalLabel")).getText();
+
+        Assert.assertEquals(expectedProjectName, projectName);
     }
 }
