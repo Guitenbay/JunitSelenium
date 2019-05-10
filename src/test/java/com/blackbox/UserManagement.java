@@ -3,7 +3,6 @@ package com.blackbox;
 
 import org.junit.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
 import java.util.UUID;
@@ -17,20 +16,22 @@ public class UserManagement {
         Engine.getInstance().stop();
     }
 
-    @Before
-    public void Login() {
+    @BeforeClass
+    public static void Login() throws InterruptedException {
+        WebDriver driver = Engine.getInstance().getDriver();
         driver.get("http://gc21131138.imwork.net:20430/test-maker/web/admin/index.action");
-        driver.manage().window().setSize(new Dimension(1280, 800));
         driver.findElement(By.id("username")).sendKeys("testadmin1");
         driver.findElement(By.id("password")).sendKeys("123456");
         driver.findElement(By.id("login-button")).click();
         driver.manage().window().maximize();
+        Engine.getInstance().implicitlyWait();
+        driver.findElement(By.linkText("用户管理")).click();
+        Thread.sleep(1000);
     }
 
     @Test
     public void enableUser() throws InterruptedException {
-        engine.implicitlyWait();
-        driver.findElement(By.linkText("用户管理")).click();
+        engine.refresh();
         driver.findElement(By.cssSelector("#user-data-table > tbody > tr:nth-child(4) > td:nth-child(1) > input")).click();
         driver.findElement(By.id("switch-state-btn")).click();
         driver.findElement(By.xpath("//div[3]/div/div/button[2]")).click();
@@ -45,8 +46,7 @@ public class UserManagement {
 
     @Test
     public void setAsAdmin() throws InterruptedException {
-        engine.implicitlyWait();
-        driver.findElement(By.linkText("用户管理")).click();
+        engine.refresh();
         driver.findElement(By.cssSelector(".item-row:nth-child(4) .item-selection")).click();
         driver.findElement(By.id("switch-admin-btn")).click();
         driver.findElement(By.xpath("//div[3]/div/div/button[2]")).click();
@@ -61,8 +61,7 @@ public class UserManagement {
 
     @Test
     public void resetPassword() throws InterruptedException {
-        engine.implicitlyWait();
-        driver.findElement(By.linkText("用户管理")).click();
+        engine.refresh();
         driver.findElement(By.cssSelector(".item-row:nth-child(4) .item-selection")).click();
         driver.findElement(By.id("reset-password-btn")).click();
         driver.findElement(By.xpath("//div[3]/div/div/button[2]")).click();
@@ -72,8 +71,7 @@ public class UserManagement {
 
     @Test
     public void addUserWithDifferentPassword() {
-        engine.implicitlyWait();
-        driver.findElement(By.linkText("用户管理")).click();
+        engine.refresh();
         driver.findElement(By.cssSelector(".glyphicon-plus-sign")).click();
         driver.findElement(By.id("user-username")).sendKeys("abcd");
         driver.findElement(By.id("user-fullName")).sendKeys("ABCD");
@@ -87,8 +85,7 @@ public class UserManagement {
 
     @Test
     public void addUserByFewLetterPassword() {
-        engine.implicitlyWait();
-        driver.findElement(By.linkText("用户管理")).click();
+        engine.refresh();
         driver.findElement(By.cssSelector(".glyphicon-plus-sign")).click();
         driver.findElement(By.id("user-username")).sendKeys("abcd");
         driver.findElement(By.id("user-fullName")).sendKeys("ABCD");
@@ -102,8 +99,7 @@ public class UserManagement {
 
     @Test
     public void addUserWithFewLetterUsername() {
-        engine.implicitlyWait();
-        driver.findElement(By.linkText("用户管理")).click();
+        engine.refresh();
         driver.findElement(By.cssSelector(".glyphicon-plus-sign")).click();
         driver.findElement(By.id("user-username")).sendKeys("abc");
         driver.findElement(By.id("user-fullName")).sendKeys("ABCD");
@@ -117,8 +113,7 @@ public class UserManagement {
 
     @Test
     public void addUserWithInvalidEmail() {
-        engine.implicitlyWait();
-        driver.findElement(By.linkText("用户管理")).click();
+        engine.refresh();
         driver.findElement(By.cssSelector(".glyphicon-plus-sign")).click();
         driver.findElement(By.id("user-username")).sendKeys("abcd");
         driver.findElement(By.id("user-fullName")).sendKeys("ABCD");
@@ -132,10 +127,9 @@ public class UserManagement {
 
     @Test
     public void addUser() throws InterruptedException {
+        engine.refresh();
         String username = UUID.randomUUID().toString().substring(0, 8);
 
-        engine.implicitlyWait();
-        driver.findElement(By.linkText("用户管理")).click();
         driver.findElement(By.cssSelector(".glyphicon-plus-sign")).click();
         driver.findElement(By.id("user-username")).sendKeys(username);
         driver.findElement(By.id("user-fullName")).sendKeys(username);

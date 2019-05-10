@@ -56,6 +56,10 @@ public class Engine {
         return js;
     }
 
+    public void refresh(){
+        js.executeScript("location.reload();");
+    }
+
     public void implicitlyWait(){
         driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
     }
