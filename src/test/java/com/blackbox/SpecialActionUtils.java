@@ -25,4 +25,12 @@ public class SpecialActionUtils {
         driver.findElement(By.id("login-button")).click();
     }
 
+    public static void adminLogin(Engine engine, String name, String pwd, String url) {
+        WebDriver driver = engine.getDriver();
+        driver.get(url);
+        driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys(name);
+        driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys(pwd);
+        driver.findElement(By.id("login-button")).click();
+    }
+
 }
