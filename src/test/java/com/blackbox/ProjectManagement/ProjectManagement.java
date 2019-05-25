@@ -91,4 +91,26 @@ public class ProjectManagement {
 
         Assert.assertEquals(expectedProjectName, projectName);
     }
+
+    @Test
+    public void changeProjectState() {
+        engine.refresh();
+        driver.findElement(By.id("status-tab-title")).click();
+        driver.findElement(By.cssSelector(".item-row:nth-child(1) > td:nth-child(1) > .edit-item > .glyphicon")).click();
+        driver.findElement(By.cssSelector("#save-project-status-form")).click();
+        driver.findElement(By.id("save-status-btn")).click();
+        Assert.assertEquals("操作成功！", driver.findElement(By.cssSelector(".bootstrap-dialog-message")).getText());
+    }
+
+    @Test
+    public void deleteProjectState() throws InterruptedException {
+        engine.refresh();
+
+        driver.findElement(By.id("status-tab-title")).click();
+        driver.findElement(By.cssSelector(".item-row:nth-child(1) .delete-item > .glyphicon")).click();
+        driver.findElement(By.xpath("//div[3]/div/div/button[2]")).click();
+        Thread.sleep(1000);
+
+        Assert.assertEquals("操作成功！", driver.findElement(By.cssSelector(".bootstrap-dialog-message")).getText());
+    }
 }

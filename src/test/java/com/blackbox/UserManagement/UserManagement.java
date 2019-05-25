@@ -142,4 +142,31 @@ public class UserManagement {
         Thread.sleep(1000);
         Assert.assertEquals("操作成功！", driver.findElement(By.xpath("//div[4]/div/div/div[2]/div/div")).getText());
     }
+
+    @Test
+    public void searchUserWithUsername() throws InterruptedException {
+        driver.get("http://gc21131138.imwork.net:20430/test-maker/web/admin/welcome.action#users.action");
+        driver.findElement(By.id("user-filter")).sendKeys("sa");
+        driver.findElement(By.cssSelector(".glyphicon-search")).click();
+        Thread.sleep(1000);
+        Assert.assertEquals("sa", driver.findElement(By.cssSelector(".item-row:nth-child(1) > td:nth-child(3)")).getText());
+    }
+
+    @Test
+    public void searchUserWithEmail() throws InterruptedException {
+        driver.get("http://gc21131138.imwork.net:20430/test-maker/web/admin/welcome.action#users.action");
+        driver.findElement(By.id("user-filter")).sendKeys("sa@imbus.com");
+        driver.findElement(By.cssSelector(".glyphicon-search")).click();
+        Thread.sleep(1000);
+        Assert.assertEquals("sa", driver.findElement(By.cssSelector(".item-row:nth-child(1) > td:nth-child(3)")).getText());
+    }
+
+    @Test
+    public void searchUserWithPhone() throws InterruptedException {
+        driver.get("http://gc21131138.imwork.net:20430/test-maker/web/admin/welcome.action#users.action");
+        driver.findElement(By.id("user-filter")).sendKeys("13818551983");
+        driver.findElement(By.cssSelector(".glyphicon-search")).click();
+        Thread.sleep(1000);
+        Assert.assertEquals("sa", driver.findElement(By.cssSelector(".item-row:nth-child(1) > td:nth-child(3)")).getText());
+    }
 }
