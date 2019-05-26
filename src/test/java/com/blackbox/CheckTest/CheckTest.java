@@ -2,15 +2,13 @@ package com.blackbox.CheckTest;
 
 import com.blackbox.Engine;
 import com.blackbox.SpecialActionUtils;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CheckTest {
@@ -134,5 +132,62 @@ public class CheckTest {
             }
         }
     }
+    @Test
+    public void checkNullInput() throws InterruptedException {
+        engine.refresh();
+        vars.put("x", driver.findElement(By.cssSelector("td:nth-child(2) > span")).getText());
+        engine.awaitElementClickable(By.cssSelector(".glyphicon-edit")).click();
+        Thread.sleep(1000);
+        engine.awaitElementClickable(By.id("q-review-modal-comment-dlg-btn")).click();
+        driver.findElement(By.id("qa-comment")).click();
+        WebElement element = driver.findElement(By.xpath("//*[@id=\"submit-comment\"]"));
+        Assert.assertEquals("true", element.getAttribute("disabled"));
+    }
 
+    @Test
+    public void checkInput() throws InterruptedException {
+        engine.refresh();
+        vars.put("x", driver.findElement(By.cssSelector("td:nth-child(2) > span")).getText());
+        engine.awaitElementClickable(By.cssSelector(".glyphicon-edit")).click();
+        Thread.sleep(1000);
+        engine.awaitElementClickable(By.id("q-review-modal-comment-dlg-btn")).click();
+        driver.findElement(By.id("qa-comment")).click();
+        driver.findElement(By.id("qa-comment")).sendKeys("joawneigsad");
+        driver.findElement(By.xpath("//*[@id=\"submit-comment\"]")).click();
+    }
+
+    @Test
+    public void checkOverInput() throws InterruptedException {
+        engine.refresh();
+        vars.put("x", driver.findElement(By.cssSelector("td:nth-child(2) > span")).getText());
+        engine.awaitElementClickable(By.cssSelector(".glyphicon-edit")).click();
+        Thread.sleep(1000);
+        engine.awaitElementClickable(By.id("q-review-modal-comment-dlg-btn")).click();
+        driver.findElement(By.id("qa-comment")).click();
+        driver.findElement(By.id("qa-comment")).sendKeys("joawneigsadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
+                "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
+                "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
+                "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
+                "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
+                "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+        driver.findElement(By.xpath("//*[@id=\"submit-comment\"]")).click();
+    }
+
+    @Test
+    public void checkOpen() throws InterruptedException{
+        engine.refresh();
+        vars.put("x", driver.findElement(By.cssSelector("td:nth-child(2) > span")).getText());
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//table[@id='q-review-table']/tbody/tr[1]/td[8]/a/i")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.cssSelector(".bg-primary span")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//table[@id='q-review-table']/tbody/tr[3]/td[8]/a/i")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.cssSelector(".bg-primary span")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//table[@id='q-review-table']/tbody/tr[2]/td[8]/a/i")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.cssSelector(".bg-primary span")).click();
+    }
 }
