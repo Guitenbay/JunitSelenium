@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.HashMap;
 import java.util.List;
@@ -143,5 +144,110 @@ public class EditTest {
             List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"question-info-section\"]/table"));
             assert(elements.size() > 0);
         }
+    }
+
+    @Test
+    public void closeInformation() throws InterruptedException {
+        engine.refresh();
+        Engine.getInstance().implicitlyWait();
+        driver.findElement(By.xpath("//*[@id=\"question-mgmt-table\"]/tbody/tr[1]/td[8]/a[1]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.linkText("显示题目属性")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.linkText("显示题目属性")).click();
+        Thread.sleep(1000);
+        WebElement element = driver.findElement(By.id("question-info-section"));
+        Assert.assertEquals("false", element.getAttribute("aria-expanded"));
+    }
+
+    @Test
+    public void showImage() throws InterruptedException {
+        engine.refresh();
+        Engine.getInstance().implicitlyWait();
+        driver.findElement(By.cssSelector(".glyphicon-edit")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.linkText("显示图片详情")).click();
+        Thread.sleep(1000);
+        WebElement element = driver.findElement(By.id("img-panel-body"));
+        Assert.assertEquals("true", element.getAttribute("aria-expanded"));
+    }
+
+    @Test
+    public void closeImage() throws InterruptedException {
+        engine.refresh();
+        Engine.getInstance().implicitlyWait();
+        driver.findElement(By.xpath("//*[@id=\"question-mgmt-table\"]/tbody/tr[1]/td[8]/a[1]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.linkText("显示图片详情")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.linkText("显示图片详情")).click();
+        Thread.sleep(1000);
+        WebElement element = driver.findElement(By.id("img-panel-body"));
+        Assert.assertEquals("false", element.getAttribute("aria-expanded"));
+    }
+
+    @Test
+    public void chooseEasy() throws InterruptedException {
+        engine.refresh();
+        Engine.getInstance().implicitlyWait();
+        driver.findElement(By.cssSelector(".glyphicon-edit")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.linkText("显示题目属性")).click();
+        Thread.sleep(1000);
+        Select select = new Select(driver.findElement(By.id("author-q-difficulty")));
+        select.selectByValue("1");
+        Assert.assertEquals("简单", select.getAllSelectedOptions().get(0).getText());
+    }
+
+    @Test
+    public void chooseNormal() throws InterruptedException {
+        engine.refresh();
+        Engine.getInstance().implicitlyWait();
+        driver.findElement(By.cssSelector(".glyphicon-edit")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.linkText("显示题目属性")).click();
+        Thread.sleep(1000);
+        Select select = new Select(driver.findElement(By.id("author-q-difficulty")));
+        select.selectByValue("2");
+        Assert.assertEquals("一般", select.getAllSelectedOptions().get(0).getText());
+    }
+
+    @Test
+    public void chooseHard() throws InterruptedException {
+        engine.refresh();
+        Engine.getInstance().implicitlyWait();
+        driver.findElement(By.cssSelector(".glyphicon-edit")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.linkText("显示题目属性")).click();
+        Thread.sleep(1000);
+        Select select = new Select(driver.findElement(By.id("author-q-difficulty")));
+        select.selectByValue("3");
+        Assert.assertEquals("困难", select.getAllSelectedOptions().get(0).getText());
+    }
+
+    @Test
+    public void uploadImage() throws InterruptedException {
+        engine.refresh();
+        Engine.getInstance().implicitlyWait();
+        driver.findElement(By.xpath("//*[@id=\"question-mgmt-table\"]/tbody/tr[1]/td[8]/a[1]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//*[@id=\"upload-question-image-modal\"]")).click();
+        Thread.sleep(1000);
+        WebElement element = driver.findElement(By.id("question-image-modal"));
+        Assert.assertEquals("false", element.getAttribute("aria-hidden"));
+    }
+
+    @Test
+    public void cancelUploadImage() throws InterruptedException {
+        engine.refresh();
+        Engine.getInstance().implicitlyWait();
+        driver.findElement(By.xpath("//*[@id=\"question-mgmt-table\"]/tbody/tr[1]/td[8]/a[1]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//*[@id=\"upload-question-image-modal\"]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//*[@id=\"question-image-modal\"]/div/div/div[3]/button[2]")).click();
+        Thread.sleep(1000);
+        WebElement element = driver.findElement(By.id("question-image-modal"));
+        Assert.assertEquals("true", element.getAttribute("aria-hidden"));
     }
 }
