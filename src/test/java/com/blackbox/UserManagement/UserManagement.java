@@ -145,6 +145,7 @@ public class UserManagement {
 
     @Test
     public void searchUserWithUsername() throws InterruptedException {
+        engine.refresh();
         driver.get("http://gc21131138.imwork.net:20430/test-maker/web/admin/welcome.action#users.action");
         driver.findElement(By.id("user-filter")).sendKeys("sa");
         driver.findElement(By.cssSelector(".glyphicon-search")).click();
@@ -154,6 +155,7 @@ public class UserManagement {
 
     @Test
     public void searchUserWithEmail() throws InterruptedException {
+        engine.refresh();
         driver.get("http://gc21131138.imwork.net:20430/test-maker/web/admin/welcome.action#users.action");
         driver.findElement(By.id("user-filter")).sendKeys("sa@imbus.com");
         driver.findElement(By.cssSelector(".glyphicon-search")).click();
@@ -163,6 +165,7 @@ public class UserManagement {
 
     @Test
     public void searchUserWithPhone() throws InterruptedException {
+        engine.refresh();
         driver.get("http://gc21131138.imwork.net:20430/test-maker/web/admin/welcome.action#users.action");
         driver.findElement(By.id("user-filter")).sendKeys("13818551983");
         driver.findElement(By.cssSelector(".glyphicon-search")).click();
