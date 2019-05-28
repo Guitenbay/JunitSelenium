@@ -39,13 +39,18 @@ public class EditMassageTest {
     public void ValidTimeTest() throws InterruptedException {
         engine.implicitlyWait();
         Thread.sleep(1000);
-        driver.findElement(By.id("project-start")).click();
-        driver.findElement(By.linkText("5")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.id("project-finish")).click();
-        driver.findElement(By.cssSelector(".ui-icon-circle-triangle-e")).click();
-        driver.findElement(By.linkText("1")).click();
-        Thread.sleep(1000);
+//        driver.findElement(By.id("project-start")).click();
+//        driver.findElement(By.linkText("5")).click();
+        driver.findElement(By.id("project-start")).clear();
+        driver.findElement(By.id("project-start")).sendKeys("2019-04-06");
+        Thread.sleep(2000);
+//        driver.findElement(By.id("project-finish")).click();
+        driver.findElement(By.id("project-finish")).clear();
+        driver.findElement(By.id("project-finish")).sendKeys("2019-06-30");
+        driver.findElement(By.xpath("//*[@id=\"save-project-form\"]/div[6]/label")).click();
+//        driver.findElement(By.cssSelector(".ui-icon-circle-triangle-e")).click();
+//        driver.findElement(By.linkText("1")).click();
+        Thread.sleep(2000);
         driver.findElement(By.id("save-project-btn")).click();
         Assert.assertEquals("操作成功！", driver.findElement(By.xpath("//div[5]/div/div/div[2]/div/div")).getText());
         driver.findElement(By.xpath("//div[3]/div/div/button")).click();

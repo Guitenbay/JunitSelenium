@@ -86,4 +86,16 @@ public class KnowledgeTest {
         driver.findElement(By.xpath("//div[3]/div/div/button")).click();
     }
 
+    @Test
+    public void KnowledgeSearchTest() throws InterruptedException {
+        driver.findElement(By.id("kp-tab-title")).click();
+        driver.findElement(By.id("select2-syllabus-filter-container")).click();
+        driver.findElement(By.xpath("//*[@id=\"select2-syllabus-filter-results\"]/li[2]")).click();
+        driver.findElement(By.id("kp-filter")).click();
+        driver.findElement(By.id("kp-filter")).sendKeys("认识测试的总体目标");
+        driver.findElement(By.id("search-kp-btn")).click();
+        Thread.sleep(1000);
+        Assert.assertEquals("认识测试的总体目标", driver.findElement(By.cssSelector("#kp-list-table-body > .item-row:nth-child(7) > td:nth-child(3)")).getText());
+    }
+
 }

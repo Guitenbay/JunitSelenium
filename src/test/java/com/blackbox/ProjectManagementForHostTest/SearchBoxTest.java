@@ -48,7 +48,7 @@ public class SearchBoxTest {
     public void notMatchedUsernameTest() {
         engine.implicitlyWait();
         driver.findElement(By.cssSelector(".box1 > .filter")).click();
-        driver.findElement(By.cssSelector(".box1 > .filter")).sendKeys("123");
+        driver.findElement(By.cssSelector(".box1 > .filter")).sendKeys("123fadsfhk");
         Assert.assertEquals("0", driver.findElement(By.xpath("//span/span")).getText().substring(9, 10));
     }
 

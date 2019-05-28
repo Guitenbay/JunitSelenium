@@ -66,4 +66,13 @@ public class ChapterTest {
         driver.findElement(By.xpath("//div[3]/div/div/button")).click();
     }
 
+    @Test
+    public void ChapterSearchTest() throws InterruptedException {
+        driver.findElement(By.id("syllabus-keyword")).click();
+        driver.findElement(By.id("syllabus-keyword")).sendKeys("foundation");
+        driver.findElement(By.id("search-syllabus-btn")).click();
+        Thread.sleep(1000);
+        Assert.assertEquals("Foundation Level", driver.findElement(By.cssSelector(".item-row:nth-child(14) > td:nth-child(2)")).getText());
+    }
+
 }

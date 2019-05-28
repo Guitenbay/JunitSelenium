@@ -32,7 +32,7 @@ public class TopicTest {
 
 
     @Test
-    public void AChapterAddTest() throws InterruptedException {
+    public void ATopicAddTest() throws InterruptedException {
         driver.findElement(By.id("create-status-btn")).click();
         driver.findElement(By.id("qtype-name")).click();
         driver.findElement(By.id("qtype-name")).sendKeys("test1");
@@ -43,7 +43,7 @@ public class TopicTest {
     }
 
     @Test
-    public void BChapterReviseTest() throws InterruptedException {
+    public void BTopicReviseTest() throws InterruptedException {
         driver.findElement(By.xpath("//*[@id=\"qtype-data-table\"]/tbody/tr[7]/td[5]/a[1]/i")).click();
         driver.findElement(By.id("qtype-name")).click();
         driver.findElement(By.id("qtype-name")).sendKeys("test2");
@@ -54,12 +54,21 @@ public class TopicTest {
     }
 
     @Test
-    public void CChapterDeleteTest() throws InterruptedException {
+    public void CTopicDeleteTest() throws InterruptedException {
         driver.findElement(By.cssSelector(".item-row:nth-child(7) .delete-item > .glyphicon")).click();
         driver.findElement(By.xpath("//div[3]/div/div/button[2]")).click();
         Thread.sleep(1000);
         Assert.assertEquals("操作成功！", driver.findElement(By.xpath("//div[4]/div/div/div[2]/div/div")).getText());
         driver.findElement(By.xpath("//div[3]/div/div/button")).click();
+    }
+
+    @Test
+    public void DTopicSearchTest() throws InterruptedException {
+        driver.findElement(By.id("qtype-keyword")).click();
+        driver.findElement(By.id("qtype-keyword")).sendKeys("情景题");
+        driver.findElement(By.id("search-user-btn")).click();
+        Thread.sleep(1000);
+        Assert.assertEquals("情景题", driver.findElement(By.cssSelector(".item-row:nth-child(2) > td:nth-child(2)")).getText());
     }
 
 }

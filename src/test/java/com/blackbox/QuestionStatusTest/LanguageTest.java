@@ -66,4 +66,14 @@ public class LanguageTest {
         driver.findElement(By.xpath("//div[3]/div/div/button")).click();
     }
 
+    @Test
+    public void DLanguageSearchTest() throws InterruptedException {
+        driver.findElement(By.id("language-tab-title")).click();
+        driver.findElement(By.id("qlanguage-keyword")).click();
+        driver.findElement(By.id("qlanguage-keyword")).sendKeys("英文");
+        driver.findElement(By.cssSelector("#question-language-tab #search-user-btn > .glyphicon")).click();
+        Thread.sleep(1000);
+        Assert.assertEquals("英文", driver.findElement(By.cssSelector("#qlanguage-data-table .item-row:nth-child(2) > td:nth-child(2)")).getText());
+    }
+
 }

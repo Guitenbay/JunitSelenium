@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LoginTest {
 
@@ -30,6 +31,16 @@ public class LoginTest {
         SpecialActionUtils.adminLogin(engine, "testadmin1", "123456", "http://gc21131138.imwork.net:20430/test-maker/web/admin/index.action");
         engine.implicitlyWait();
         Assert.assertEquals("欢迎", driver.findElement(By.linkText("欢迎")).getText());
+    }
+
+    @Test
+    public void successLogoutForUser() {
+        SpecialActionUtils.login(engine, "Moonbird", "1159174835", "http://gc21131138.imwork.net:20430/test-maker/web/client/index.action");
+        engine.implicitlyWait();
+        driver.findElement(By.id("logout-btn")).click();
+        engine.implicitlyWait();
+        WebElement element = driver.findElement(By.id("login-button"));
+        Assert.assertEquals("登录", element.getText());
     }
 
     @Test
