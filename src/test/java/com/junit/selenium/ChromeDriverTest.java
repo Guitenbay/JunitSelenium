@@ -19,7 +19,7 @@ public class ChromeDriverTest extends TestCase {
 //    @BeforeClass
 //    public static void createAndStartService() throws IOException {
 //        service = new ChromeDriverService.Builder()
-//                .usingDriverExecutable(new File("driver/chromedriver.exe"))
+//                .usingDriverExecutable(new File("driver/chromedriver_mac_m1.exe"))
 //                .usingAnyFreePort()
 //                .build();
 //        service.start();
@@ -46,6 +46,6 @@ public class ChromeDriverTest extends TestCase {
         WebElement searchBox = driver.findElement(By.name("q"));
         searchBox.sendKeys("webdriver");
 
-        assertEquals("微软 Bing 搜索 - 国内版", driver.getTitle());
+        assertEquals("必应", driver.getTitle());
     }
 }
