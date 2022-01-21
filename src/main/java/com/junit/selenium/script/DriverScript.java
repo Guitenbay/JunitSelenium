@@ -13,9 +13,18 @@ import java.util.Properties;
 public class DriverScript {
 
     private static ActionKeywords actionKeywords;
-    private static String sActionKeyword;//从Excel中读到的关键字
-    private static String[] sArgs; //输入方法的参数
-    public static Properties OR; //页面元素的xpath
+    /**
+     * 从Excel中读到的关键字
+     */
+    private static String sActionKeyword;
+    /**
+     * 输入方法的参数
+     */
+    private static String[] sArgs;
+    /**
+     * 页面元素的xpath
+     */
+    public static Properties OR;
 
     private static Method methods[];
 
@@ -23,12 +32,12 @@ public class DriverScript {
     public static boolean bResult;
 
 
-    private DriverScript() throws NoSuchMethodException, SecurityException, ClassNotFoundException{
+    private DriverScript() throws SecurityException{
         actionKeywords = new ActionKeywords();
         methods = actionKeywords.getClass().getMethods();
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) {
         try {
             DOMConfigurator.configure("log4j.xml");
 
@@ -37,10 +46,10 @@ public class DriverScript {
             Log.info("加载和读取Excel数据文件");
             ExcelUtils.setExcelFile(Constants.Path_TestData);
 
-            FileInputStream fs = new FileInputStream(Constants.OR_Path);// 创建一个文件输入流对象
-            OR = new Properties(System.getProperties()); // 创建一个Properties对象
+            FileInputStream fs = new FileInputStream(Constants.OR_Path);
+            OR = new Properties(System.getProperties());
 
-            OR.load(fs);// 加载全部对象仓库文件
+            OR.load(fs);
 
             DriverScript startEngine = new DriverScript();
             Log.info("开始执行测试用例。");
@@ -124,7 +133,8 @@ public class DriverScript {
 
                 // 一但匹配到相关关键字方法，就会调用对应的关键字静态方法
                 // methods[i].invoke(actionKeywords);
-                method.invoke(actionKeywords, sArgs); //如果元素对象是空的，则excel中必须有个空格字符，否则java会编译不通过。
+                //如果元素对象是空的，则excel中必须有个空格字符，否则java会编译不通过。
+                method.invoke(actionKeywords, sArgs);
 
                 // 一旦任何关键字被执行，利用break语句去跳出for循环。
                 // This code block will execute after every test step

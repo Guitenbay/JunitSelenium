@@ -13,7 +13,11 @@ A simple java selenium testing script, using chrome webDriver
 + `src/main/.../utils`: some beneficial utility 
 
 ## Usage
-
+### write the URL and MACHINE type in `Constants.java`
+```txt
+type: windows / mac_m1
+url: https://www.baidu.com
+```
 ### Write the UI elements' xpath in `OR.txt`
 
 > schema: `PageObject = xpath`
